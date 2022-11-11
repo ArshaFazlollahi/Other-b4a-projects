@@ -1,0 +1,215 @@
+﻿Build1=Default,b4a.example
+File1=Home.bal
+FileGroup1=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=1
+NumberOfModules=1
+Version=7.8
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: spam
+	#VersionCode:85
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: true
+	#IncludeTitle: false
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Dim a As String
+	Dim bp As Int
+	Dim b As String
+	Dim txt As String
+	Private et As EditText
+	Private btn_snd As Button
+	Private et_n As EditText
+	Private btn_1 As Button
+	Private btn_2 As Button
+	Private btn_3 As Button
+	Private btn_4 As Button
+	Private lbl As Label
+	Dim Intent1 As Intent
+	Dim t As Int
+	Private et_r As EditText
+	Private lbl_1 As Label
+	Private btn_set As Button
+	Private btn_set2 As Button
+	Private et_b As EditText
+	Dim td As String
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	Activity.LoadLayout("Home")
+	et_b.Visible=False
+	btn_set.Visible=False
+	btn_set2.Visible=False
+	Try
+		td= File.ReadString(File.DirRootExternal,"spam/btn1.txt")
+	Catch
+		Log(LastException)
+	End Try
+	btn_1.Text=td
+	Try
+		td= File.ReadString(File.DirRootExternal,"spam/btn2.txt")
+	Catch
+		Log(LastException)
+	End Try
+	btn_2.Text=td
+	Try
+		td= File.ReadString(File.DirRootExternal,"spam/btn3.txt")
+	Catch
+		Log(LastException)
+	End Try
+	btn_3.Text=td
+	Try
+		td= File.ReadString(File.DirRootExternal,"spam/btn4.txt")
+	Catch
+		Log(LastException)
+	End Try
+	btn_4.Text=td
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+
+Sub btn_snd_Click
+	txt=et.Text
+	t=et_n.Text
+	a=et_r.Text
+	For i = 1 To t
+		Intent1.Initialize(Intent1.ACTION_VIEW, $"https://api.whatsapp.com/send?phone=${a}&text=${txt}"$)
+		StartActivity(Intent1)
+	Next
+End Sub
+
+Sub btn_4_Click
+	txt=btn_4.Text
+	t=et_n.Text
+	a=et_r.Text
+	For i = 1 To t
+		Intent1.Initialize(Intent1.ACTION_VIEW, $"https://api.whatsapp.com/send?phone=${a}&text=${txt}"$)
+		StartActivity(Intent1)
+	Next
+End Sub
+
+Sub btn_4_LongClick
+	et_b.Visible=True
+	btn_set.Visible=True
+	btn_set.Visible=True
+	bp=4
+End Sub
+
+Sub btn_3_Click
+	txt=btn_3.Text
+	t=et_n.Text
+	a=et_r.Text
+	For i = 1 To t
+		Intent1.Initialize(Intent1.ACTION_VIEW, $"https://api.whatsapp.com/send?phone=${a}&text=${txt}"$)
+		StartActivity(Intent1)
+	Next
+End Sub
+
+Sub btn_3_LongClick
+	et_b.Visible=True
+	btn_set.Visible=True
+	btn_set.Visible=True
+	bp=3
+End Sub
+
+Sub btn_2_Click
+	txt=btn_2.Text
+	t=et_n.Text
+	a=et_r.Text
+	For i = 1 To t
+		Intent1.Initialize(Intent1.ACTION_VIEW, $"https://api.whatsapp.com/send?phone=${a}&text=${txt}"$)
+		StartActivity(Intent1)
+	Next
+End Sub
+
+Sub btn_2_LongClick
+	et_b.Visible=True
+	btn_set.Visible=True
+	btn_set.Visible=True
+	bp=2
+End Sub
+
+Sub btn_1_Click
+	txt=btn_1.Text
+	t=et_n.Text
+	a=et_r.Text
+	For i = 1 To t
+		Intent1.Initialize(Intent1.ACTION_VIEW, $"https://api.whatsapp.com/send?phone=${a}&text=${txt}"$)
+		StartActivity(Intent1)
+	Next
+End Sub
+
+Sub btn_1_LongClick
+	et_b.Visible=True
+	btn_set.Visible=True
+	btn_set.Visible=True
+	bp=1
+End Sub
+
+Sub btn_set2_Click
+	If bp==1 Then
+		btn_1.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn1.txt",et_b.Text)
+	End If
+	If bp==2 Then
+		btn_2.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn2.txt",et_b.Text)
+	End If
+	If bp==3 Then
+		btn_3.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn3.txt",et_b.Text)
+	End If
+	If bp==4 Then
+		btn_4.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn4.txt",et_b.Text)
+	End If
+End Sub
+
+Sub btn_set_Click
+	btn_set2_Click
+	If bp==1 Then
+		btn_1.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn1.txt",et_b.Text)
+	End If
+	If bp==2 Then
+		btn_2.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn2.txt",et_b.Text)
+	End If
+	If bp==3 Then
+		btn_3.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn3.txt",et_b.Text)
+	End If
+	If bp==4 Then
+		btn_4.Text=et_b.Text
+		File.WriteString(File.DirRootExternal,"spam/btn4.txt",et_b.Text)
+	End If
+End Sub
