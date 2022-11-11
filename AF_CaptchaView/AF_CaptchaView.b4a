@@ -1,0 +1,75 @@
+﻿Build1=AliFarahy,ali.farahy.AFCaptchaView,Free
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=af_captchaview
+ManifestCode= AddManifestText(~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="29"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~ ~\n~
+NumberOfFiles=1
+NumberOfLibraries=2
+NumberOfModules=0
+Version=10.9
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: AF_CaptchaView
+	#VersionCode: 1
+	#VersionName: Free
+	#SupportedOrientations: Portrait
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+ 
+End Sub
+
+Sub Globals
+	 
+	Private Button1 As Button
+	Private AF_CaptchaView1 As AF_CaptchaView
+	Private EditText1 As EditText
+	Private Button2 As Button
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+	AF_CaptchaView1.TextStyle(AF_CaptchaView1.TEXT_STYLE_ITALIC)
+	AF_CaptchaView1.CaptchaLength(6)
+	AF_CaptchaView1.CaptchtaType(AF_CaptchaView1.CAPTCHA_TYPE_NUMBER_AND_ALPHABET)
+	AF_CaptchaView1.IsDotNeeded(False)
+ 
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+ 
+
+Private Sub Button1_Click
+	If EditText1.Text=AF_CaptchaView1.GetCaptchaCode Then
+		MsgboxAsync("Captcha Match","Hi")
+		
+		Else
+		ToastMessageShow("Captcha Do Not Match",False)
+	End If
+End Sub
+
+Private Sub Button2_Click
+	AF_CaptchaView1.Regenerate
+End Sub
+
+Private Sub AF_CaptchaView1_Click
+	ToastMessageShow("Clicked",False)
+End Sub
+
+Private Sub AF_CaptchaView1_LongClick
+	ToastMessageShow("Long Clicked",False)
+End Sub
